@@ -1,0 +1,16 @@
+PI2: PI 2 * ;
+drawDot:
+  "red" fillStyle
+  beginPath
+  # ctx.arc(x, y, r, aStart, aEnd, clockwise)
+  0 PI2 true arc
+  fill
+  closePath ;
+
+initializeCanvas:
+  250 250 translate
+  "black" fillStyle
+  { "x" -250 "y" -250 } 500 500 fillRect ;
+
+initializeCanvas
+# Draw a dot

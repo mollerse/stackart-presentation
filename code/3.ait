@@ -1,0 +1,33 @@
+asKey: swap make with ;
+asX: "x" asKey ;
+asY: "y" asKey ;
+X: "x" get ;
+Y: "y" get ;
+addX: [dup X] dip + asX ;
+addY: [dup Y] dip + asY ;
+
+PI2: PI 2 * ;
+drawDot:
+  "red" fillStyle
+  beginPath
+  0 PI2 true arc
+  fill
+  closePath ;
+
+randomCoordinate: -250 250 random2 ;
+withRandomX: randomCoordinate asX ;
+withRandomY: randomCoordinate asY ;
+makePoint:
+  { "x" 0 "y" 0 }
+  withRandomX
+  withRandomY ;
+
+makePoints: ;
+
+initializeCanvas:
+  250 250 translate
+  "black" fillStyle
+  { "x" -250 "y" -250 } 500 500 fillRect ;
+
+initializeCanvas
+# Draw many randomly placed dots

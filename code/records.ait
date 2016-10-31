@@ -1,0 +1,28 @@
+# Concatenative composition & factoring
+# make with get helpers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# asKey: swap make with ;
+# asX: "x" asKey ;
+# asY: "y" asKey ;
+# X: "x" get ;
+# Y: "y" get ;
+# addX: [dup X] dip + asX ;
+# addY: [dup Y] dip + asY ;

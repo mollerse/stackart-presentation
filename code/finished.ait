@@ -1,0 +1,74 @@
+asKey: swap make with ;
+asX: "x" asKey ;
+asY: "y" asKey ;
+asDX: "dx" asKey ;
+asDY: "dy" asKey ;
+asColor: "color" asKey ;
+Y: "y" get ;
+X: "x" get ;
+DY: "dy" get ;
+DX: "dx" get ;
+Color: "color" get ;
+add2Y: [ dup Y ] dip + asY ;
+add2X: [ dup X ] dip + asX ;
+
+PI2: PI 2 * ;
+
+drawDot:
+  beginPath
+  0 PI2 true arc
+  fill
+  closePath ;
+
+randomCoordinate: -250 250 random2 ;
+withRandomX: randomCoordinate asX ;
+withRandomY: randomCoordinate asY ;
+
+randomVelocity: -2.5 2.5 random2 ;
+withRandomDX: randomVelocity asDX ;
+withRandomDY: randomVelocity asDY ;
+
+colors: [ "#00fff2" "#fc00ff" "#fdeb7c" ] ;
+randomIndex: 0 colors size random2 floor ;
+randomColor: randomIndex colors at ;
+withRandomColor: randomColor asColor ;
+
+makePoint:
+  { "x" 0 "y" 0 "dx" 0 "dy" 0 }
+  withRandomX
+  withRandomY
+  withRandomDX
+  withRandomDY ;
+
+makePoints:
+  [] 0
+  [dup 100 <]
+  [ [ makePoint swons ] dip 1 + ]
+  while
+  pop ;
+
+drawPoints:
+  dup
+  "red" fillStyle
+  [ 10 drawDot ]
+  step ;
+
+movePoints:
+  [ dup DY add2Y dup DX add2X ]
+  map ;
+
+clearCanvas:
+  "black" fillStyle
+  { "x" -250 "y" -250 } 500 500 fillRect ;
+
+initializeCanvas:
+  250 250 translate
+  clearCanvas ;
+
+animate: 60 rAF ;
+
+initializeCanvas
+makePoints
+[ clearCanvas
+  drawPoints
+  movePoints ] animate
